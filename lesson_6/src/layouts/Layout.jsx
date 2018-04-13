@@ -11,16 +11,12 @@ import Footer from '../components/Footer';
  * Либо отдельная страница покемона
  */
 export default class Layout extends React.Component{
-    constructor(props){
-        super(props);
-        this.reg=/\d+$/;
-    }
     render(){
         return (<div>
             <Header/>
                 <Switch>
-                    <Route path="/" component={Main}/>
-                    <Route path={`/pokemon/${this.reg}`} component={Pokemon}/>
+                    <Route exact path="/" component={Main}/>
+                    <Route path="/pokemon" component={Pokemon}/>
                 </Switch>
             <Footer/>
         </div>);

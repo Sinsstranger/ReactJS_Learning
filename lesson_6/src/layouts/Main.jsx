@@ -14,7 +14,7 @@ class Pokemons extends PureComponent {
         fetch('https://pokeapi.co/api/v2/pokemon/?limit=200').then(response => response.json())
             .then(res => res.results).then(poki => {
                 for(let i=0, b=1; i<poki.length; i++, b++){
-                    this.result.push(<Name pokiName={poki[i].name} num={b} imageSrc={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${b}.png`}/>);
+                    this.result.push(<Name pokiName={poki[i].name} number={b} imageSrc={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${b}.png`}/>);
             }
             this.setState({});
         });
@@ -30,6 +30,11 @@ class Pokemons extends PureComponent {
 }
 class Name extends PureComponent{
     render(){
-        return <div className="Pokemon"><Link to={`/pokemon/${this.props.num}`} num={this.props.num}><img src={this.props.imageSrc} alt={this.props.pokiName}/></Link><p>{this.props.pokiName}</p></div>;
+        return (<div className="Pokemon">
+            <Link to={`/pokemon/${this.props.number}`}>
+                <img src={this.props.imageSrc} alt={this.props.pokiName}/>
+            </Link>
+            <p>{this.props.pokiName}</p>
+        </div>);
     }
 }
